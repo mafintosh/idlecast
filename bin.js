@@ -54,7 +54,7 @@ var loop = function () {
   player.chromecastStatus(function (err, status) {
     debug('chromecast status', status)
     if (err) return wait()
-    if (status && status.applications && status.applications.length && status.applications[0].appId === 'E8C28D3C') return play()
+    if (files.length && status && status.applications && status.applications.length && status.applications[0].appId === 'E8C28D3C') return play()
     wait()
   })
 }
