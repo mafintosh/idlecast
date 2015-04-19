@@ -1,0 +1,24 @@
+{
+  "name": "idlecast",
+  "version": "0.0.0",
+  "description": "Chomecast all files in a folder when your chromecast isn't doing anything else",
+  "main": "index.js",
+  "dependencies": {
+    "chromecasts": "^1.3.0",
+    "minimist": "^1.1.1"
+  },
+  "devDependencies": {},
+  "bin": {
+    "idlecast": "./bin.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mafintosh/idlecast.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mafintosh/idlecast/issues"
+  },
+  "homepage": "https://github.com/mafintosh/idlecast"
+}
