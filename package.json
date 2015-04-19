@@ -1,6 +1,6 @@
 {
   "name": "idlecast",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Chomecast all files in a folder when your chromecast isn't doing anything else",
   "main": "index.js",
   "dependencies": {
