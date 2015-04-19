@@ -8,6 +8,7 @@ var pump = require('pump')
 var path = require('path')
 var network = require('network-address')
 var minimist = require('minimist')
+var debug = require('debug')('idlecast')
 
 var argv = minimist(process.argv.slice(2), {
   alias: {
@@ -51,6 +52,7 @@ var loop = function () {
   clearTimeout(timeout)
   if (!player) return wait()
   player.chromecastStatus(function (err, status) {
+    debug('chromecast status', status)
     if (err) return wait()
     if (status && status.applications && status.applications.length && status.applications[0].appId === 'E8C28D3C') return play()
     wait()
@@ -81,6 +83,7 @@ var check = function () {
       return argv.all || exts.indexOf(name.split('.').pop()) > -1
     })
 
+    debug('updated playlist', files)
     console.log('Playlist updated (%d %s)', files.length, files.length === 1 ? 'file' : 'files')
     loop()
   })
@@ -91,6 +94,7 @@ check()
 
 var server = http.createServer(function (req, res) { // TODO: use module for this
   var filename = path.join(folder, path.resolve('/', decodeURI(req.url.split('?')[0])))
+  debug('serving file', filename)
 
   fs.stat(filename, function (err, st) {
     if (err) {
