@@ -27,7 +27,7 @@ if (argv.help) {
     '  --no-mkv          do not add mkv files\n' +
     '  --no-webm         do not add webm files\n'
   )
-  return
+  process.exit(0)
 }
 
 var folder = argv._[0] || process.cwd()
@@ -61,7 +61,7 @@ loop()
 
 var play = function () {
   if (!player) return
-  if (i < files.length-1) i++
+  if (i < files.length - 1) i++
   else i = 0
 
   console.log('Playing %s', files[i])
