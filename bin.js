@@ -88,6 +88,7 @@ var check = function () {
     if (list) files = list
 
     files = files.filter(function (name) {
+      if (name[0] === '.') return false
       return argv.all || exts.indexOf(name.split('.').pop()) > -1
     })
 
