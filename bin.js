@@ -53,8 +53,16 @@ var loop = function () {
   if (!player) return wait()
   player.chromecastStatus(function (err, status) {
     debug('chromecast status', status)
-    if (err) return wait()
-    if (files.length && status && status.applications && status.applications.length && status.applications[0].appId === 'E8C28D3C') return play()
+    if (err || !files.length || !status || !status.applications || status.applications.length !== 1) return wait()
+    if (status.applications[0].appId === 'E8C28D3C') return play()
+    if (status.applications[0].displayName === 'Default Media Receiver' || status.applications[0].appId === 'CC1AD845') {
+      player.status(function (err, status) {
+        if (err) return wait()
+        if (!status) return play()
+        wait()
+      })
+      return
+    }
     wait()
   })
 }
